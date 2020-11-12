@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:form="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Przetwarzamy xml z ulicami wroclawia</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+<div class="container">
+
+    <h2>Pobieranie danych xml - menu</h2>
+
+</div>
+
+<div>
+    <p>
+<label th:text="${iloscUlic}"> </label>
+   <-- tyle jest ulic we wroclawiu </p>
+</div>
+<p>podaj zakres ulic od do:</p>
+
+<div class="col-md-6" layout:fragment="content" >
+
+    <form action="#" th:action="@{/wyswietlUlice}" th:object="${zakres}" method="POST">
+        <table>
+            <tr>
+                <th> opis</th>
+                <th>pozycja</th>
+            </tr>
+            <tr>
+                <td>
+                    <label >od:</label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{o_d}"
+                           class="form-control mb-4 col-4" placeholder="1" value="1" id="a">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>ilosc:</label>
+                </td>
+                <td>
+                    <input type="text"  class="form-control mb-4 col-4" placeholder="2" value="2" th:field="*{d_o}" id="b">
+                </td>
+            </tr>
+
+
+
+        </table>
+        <button type="submit" class="btn btn-info col-2" id="myBtn">pobierz</button>
+
+
+    </form>
+    <br>
+    <form action="#" th:action="@{/zapiszExcel}" >
+        <button type="submit" class="btn btn-info col-2" id="btnExcel1">zapisz do excela</button>
+    </form>
+
+</div>
+
+    <div class="toast">
+        <div class="toast-header">
+           Komunikat
+        </div>
+        <div class="toast-body">
+            zaimportowano do bazy
+        </div>
+    </div>
+
+
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(event) {
+        document.getElementById('a').value = '1';
+    });
+      document.addEventListener('DOMContentLoaded', function(event) {
+        document.getElementById('b').value = '2';
+    });
+
+    $(document).ready(function(){
+      $("#myBtn").click(function(){
+        $('.toast').toast('show');
+      });
+    });
+
+
+
+</script>
+
+<hr>
+
+</body>
+</html>

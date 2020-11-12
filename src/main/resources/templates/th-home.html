@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Przetwarzamy xml z ulicami wroclawia</title>
+
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap-theme.min.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <h2>Dane do autoryzacji</h2>
+        </div>
+        <div class="col-md-6" layout:fragment="content" >
+
+              <form action="#" th:action="@{/ulice2}" th:object="${uzytkownik}" method="POST">
+                <table>
+                    <tr>
+                        <th> opis</th>
+                        <th>pozycja</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label >uzytkownik:</label>
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{nazwa}"
+                             class="form-control mb-4 col-4" placeholder="dostep@publiczny" value="dostep@publiczny" id="a">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>haslo:</label>
+                        </td>
+                        <td>
+                          <input type="text"  class="form-control mb-4 col-4" placeholder="publiczny" value="publiczny" th:field="*{haslo}" id="b">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="submit" class="btn btn-info col-2">przejdz dalej</button>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </form>
+     </div>
+        <div class="col-md-3">
+
+            <hr>
+            <a th:href="@{/ulice}">Ulice</a>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(event) {
+        document.getElementById('a').value = 'dostep@publiczny';
+    });
+      document.addEventListener('DOMContentLoaded', function(event) {
+        document.getElementById('b').value = 'publiczny';
+    });
+</script>
+
+
+</body>
+</html>
